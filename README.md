@@ -79,6 +79,8 @@ And that's it, you're ready to develop `ziuziu`. Now you can run tests:
 You will see that the package is created with 11 `pytest` tests, and they should all pass (you will see the output from `pytest`).
 
 
+> When you create a package using `makepackage`, you can read the README file of the new package. It contains some essential information about package development, such as buidling the package, installing it, and uploading to PyPi.
+
 ## Structure of a package created using `makepackage`
 
 You can use various structures to create a Python package. `makepackage` uses one of them, a simple (though not the simplest) one. You will see the following structure of the ziuziu/ folder (so, of the `ziuziu` package):
