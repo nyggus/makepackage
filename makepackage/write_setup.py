@@ -19,7 +19,7 @@ setuptools.setup(
     description="[MAKEPACKAGE]",
     license='MIT',
     long_description=long_description,
-    long_description_content_type="text/x-md",
+    long_description_content_type="text/markdown",
     url="[MAKEPACKAGE]",
     packages=setuptools.find_packages(),
     classifiers=[
