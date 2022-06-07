@@ -13,6 +13,8 @@ The use of `makepackage` is very simple, but this does not come without costs: i
 * setup.py will include `pytest`, `wheel`, `black` and `mypy` in the `dev` mode; you can remove them manually before installation
 * the package will use `pytest` for unit testing and `doctest`  for documentation testing
 
+> 
+
 The idea behind `makepackage` is to offer a tool that creates a working simplistic package that one can extend and develop. And indeed, you will find in it tests (both `pytest`s and `doctest`s) that pass; you can install the package in the editable mode, and after that you will be able to import it. So, the resulting package is just fine, and you can immediately move to development.
 
 
@@ -113,7 +115,7 @@ Those who tried to create such a package manually know that quite often somethin
 
 > `makepackage` comes with some functionalities that you can get rid of:
 >> * a conftest.py file in the tests/ folder
->> * Simple annotations in the `foo()`, `bar()` and `baz()` functions of the newly created package
+>> * simple annotations in the `foo()`, `bar()` and `baz()` functions of the newly created package
 >> * `doctest`s in the above functions
 
 
