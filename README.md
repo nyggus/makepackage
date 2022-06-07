@@ -2,7 +2,7 @@
 
 ## Rationale and background
 
-Organizing Python code in a package has a lot of advantages and actually simplifies development - but the first hours can be tricky. To facilitate this process, you can use tools such as [Cookiecutter](https://cookiecutter.readthedocs.io/), but they themselves are quite advanced and offer a lot of functionalities that you need to learn — quite often, this complexity makes development more difficult, sometimes changing it to a nightmare. 
+Organizing Python code in a package has a lot of advantages and actually simplifies development — but the first hours can be tricky. To facilitate this process, you can use tools such as [Cookiecutter](https://cookiecutter.readthedocs.io/), but they themselves are quite advanced and offer a lot of functionalities that you need to learn — quite often, this complexity makes development more difficult, sometimes changing it to a nightmare. 
 
 To facilitate this step, I created a package template and have been using it for about a year. Life got easier. But the template required some manual work that could be automated. This is when I thought that a script would be better, so I wrote one. It worked fine indeed, and things got even easier. And then I thought, as this is so useful for me, why not make it useful for others? So, I made this package, and now you can use it just like me.
 
@@ -13,7 +13,7 @@ The use of `makepackage` is very simple, but this does not come without costs: i
 * setup.py will include `pytest`, `wheel`, `black` and `mypy` in the `dev` mode; you can remove them manually before installation
 * the package will use `pytest` for unit testing and `doctest`  for documentation testing
 
-> 
+> You will find annotated code in `ziuziu` (given the simplicity of the functions, the annotations are very simple), and you can run `mypy` on it, with success.
 
 The idea behind `makepackage` is to offer a tool that creates a working simplistic package that one can extend and develop. And indeed, you will find in it tests (both `pytest`s and `doctest`s) that pass; you can install the package in the editable mode, and after that you will be able to import it. So, the resulting package is just fine, and you can immediately move to development.
 
