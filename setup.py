@@ -14,7 +14,7 @@ setuptools.setup(
     author_email="nyggus@gmail.com",
     description="Creating a structure of a simple Python package",
     long_description=long_description,
-    long_description_content_type="text/x-md",
+    long_description_content_type="text/markdown",
     license="MIT",
     url="https://github.com/nyggus/perftest",
     packages=setuptools.find_packages(),
