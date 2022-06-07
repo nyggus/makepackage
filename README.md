@@ -2,7 +2,7 @@
 
 ## Rationale and background
 
-Organizing Python code in a package has a lot of advantages and actually simplifies development - but the first hours can be tricky. Certainly, you can use tools such as [Cookiecutter](https://cookiecutter.readthedocs.io/), but they themselves are quite advanced and offer a lot of functionalities that you need to learn - and more often than not you do not need this complexity. 
+Organizing Python code in a package has a lot of advantages and actually simplifies development - but the first hours can be tricky. To facilitate this process, you can use tools such as [Cookiecutter](https://cookiecutter.readthedocs.io/), but they themselves are quite advanced and offer a lot of functionalities that you need to learn — and more often than not you do not need this complexity. 
 
 Therefore, to facilitate this step, I created a package template and have been using it for about a year. But the template required some manual work that could be automated. This is when I thought that a script will be better, so I wrote one. It worked fine indeed, and it was practically error-free. And then I thought, as this is so useful for me, why not make it useful for others? So, I made this package, and now you can use it just like me.
 
