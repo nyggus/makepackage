@@ -6,8 +6,10 @@ def write_conftest(path: Path) -> None:
         f.write(
             """import pytest
 
+from typing import Tuple
+
 @pytest.fixture
-def strings():
+def strings() -> Tuple[str, str, str]:
     return (
         "Whatever string",
         "Shout Bamalama!",
