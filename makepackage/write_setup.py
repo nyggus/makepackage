@@ -1,7 +1,7 @@
-import pathlib
+from pathlib import Path
 
 
-def write_setup(path: pathlib.Path, package_name: str, CLI: bool) -> None:
+def write_setup(path: Path, package_name: str, CLI: bool) -> None:
     setup = f"""import setuptools
 
 with open("README.md", "r") as fh:

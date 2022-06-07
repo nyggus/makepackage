@@ -1,4 +1,4 @@
-import pathlib
+from pathlib import Path
 
 gitignore = """# Byte-compiled / optimized / DLL files
 __pycache__/
@@ -63,6 +63,6 @@ venv-*/
 """
 
 
-def write_gitignore(path: pathlib.Path) -> None:
+def write_gitignore(path: Path) -> None:
     with open(path / ".gitignore", "w") as f:
         f.write(gitignore)

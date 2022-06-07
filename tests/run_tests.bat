@@ -3,6 +3,7 @@
 
 :: Run the script in a venv with makepackage installed.
 
+CALL ..\..\venv-makepackage-win\Scripts\activate
 CALL run_makepackage_no_CLI.bat
 CALL ..\..\venv-makepackage-win\Scripts\activate
 CALL run_makepackage_with_CLI.bat
@@ -13,6 +14,8 @@ CALL run_makepackage_with_CLI.bat
 :: Note also that pytest would catch also pkg's (pkgCLI's) tests,
 :: so we will run the test_makepackage.py test directly.
 :: The tests will remove pkg- and pkgCLI-related folders
+CALL ..\..\venv-makepackage-win\Scripts\activate
 cd ..
 CALL ..\venv-makepackage-win\Scripts\activate
 CALL pytest tests\test_makepackage.py
+cd tests

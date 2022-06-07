@@ -1,8 +1,8 @@
-import pathlib
-
 from datetime import date
+from pathlib import Path
 
-def write_license(path: pathlib.Path) -> None:
+
+def write_license(path: Path) -> None:
     LICENSE = f"""MIT License
 
 Copyright (c) {date.today().year} [MAKEPACKAGE]

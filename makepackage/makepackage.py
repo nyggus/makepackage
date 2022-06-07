@@ -1,6 +1,6 @@
 import os
-import pathlib
 from easycheck import check_if_not
+from pathlib import Path
 
 from makepackage.write_README import write_README
 from makepackage.write_setup import write_setup
@@ -32,7 +32,7 @@ class FolderExistsError(Exception):
 def makepackage(package_name: str, CLI: bool) -> None:
 
     # create directories
-    root_path = (pathlib.Path(".") / f"{package_name}").absolute()
+    root_path = (Path(".") / f"{package_name}").absolute()
     make_dirs(root_path, package_name)
 
     # write files in the root folder
@@ -58,7 +58,7 @@ def makepackage(package_name: str, CLI: bool) -> None:
         write_CLI_main(module_path, package_name)
 
 
-def make_dirs(root_path: pathlib.Path, package_name: str) -> None:
+def make_dirs(root_path: Path, package_name: str) -> None:
     check_if_not(
         root_path.exists(),
         FolderExistsError,

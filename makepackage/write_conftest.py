@@ -1,7 +1,7 @@
-import pathlib
+from pathlib import Path
 
 
-def write_conftest(path: pathlib.Path) -> None:
+def write_conftest(path: Path) -> None:
     with open(path / "conftest.py", "w") as f:
         f.write(
             """import pytest

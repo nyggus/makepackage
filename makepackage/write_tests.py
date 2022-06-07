@@ -1,7 +1,7 @@
-import pathlib
+from pathlib import Path
 
 
-def write_tests(path: pathlib.Path, package_name: str) -> None:
+def write_tests(path: Path, package_name: str) -> None:
     with open(path / f"test_{package_name}.py", "w") as f:
         f.write(
             f"""import pytest
