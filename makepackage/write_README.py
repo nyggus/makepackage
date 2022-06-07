@@ -1,7 +1,7 @@
-import pathlib
+from pathlib import Path
 
 
-def write_README(path: pathlib.Path, package_name: str, CLI: bool) -> None:
+def write_README(path: Path, package_name: str, CLI: bool) -> None:
     README = f"""# `{package_name}`: A Python package for ...
 
 
