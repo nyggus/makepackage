@@ -1,5 +1,5 @@
 :: These tests assume that you have a venv-makepackage-win virtual environment
-:: installed two folders above (../../venv-makepackage-win).
+:: installed two folders above (..\..\venv-makepackage-win).
 
 :: Run the script in a venv with makepackage installed.
 
@@ -16,6 +16,5 @@ CALL run_makepackage_with_CLI.bat
 :: The tests will remove pkg- and pkgCLI-related folders
 CALL ..\..\venv-makepackage-win\Scripts\activate
 cd ..
-CALL ..\venv-makepackage-win\Scripts\activate
 CALL pytest tests\test_makepackage.py
 cd tests

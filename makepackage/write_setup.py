@@ -8,7 +8,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 extras_requirements = LEFT_CURLY_BRACKET
-    "dev": ["wheel", "black", "pytest"],
+    "dev": ["wheel", "black", "pytest", "mypy"],
 RIGHT_CURLY_BRACKET
 
 setuptools.setup(
