@@ -1,7 +1,7 @@
-import pathlib
+from pathlib import Path
 
 
-def write_CLI_main(path: pathlib.Path, package_name: str) -> None:
+def write_CLI_main(path: Path, package_name: str) -> None:
     CLI_main = f"""from {package_name} import foo, bar, baz
 
 

@@ -1,4 +1,4 @@
-import pathlib
+from pathlib import Path
 
 module = '''def foo(x: int) -> int:
     """Calculate square of x.
@@ -46,6 +46,6 @@ def baz(string: str) -> str:
 '''
 
 
-def write_module(path: pathlib.Path, package_name: str) -> None:
+def write_module(path: Path, package_name: str) -> None:
     with open(path / f"{package_name}.py", "w") as f:
         f.write(module)

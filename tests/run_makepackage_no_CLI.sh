@@ -1,29 +1,29 @@
 # Run the script in a venv with makepackage installed.
 
-echo Creating pkg package
-makepackage pkg
+echo Creating pkgNoCLI package
+makepackage pkgNoCLI
 
 echo Deactivating the makepackage venv
 deactivate
 
 echo
-echo Creating and activating a new venv, venv-pkg
-python -m venv venv-pkg
-source venv-pkg/bin/activate
+echo Creating and activating a new venv, venv-pkgNoCLI
+python -m venv venv-pkgNoCLI
+source venv-pkgNoCLI/bin/activate
 
 echo
 echo Installing the package in editable and development mode
-cd pkg
+cd pkgNoCLI
 python -m pip install -e .[dev]
 
 echo
-echo Running pytests of pkg
+echo Running pytests of pkgNoCLI
 pytest
 
-echo Running doctests of pkg - no output expected
-python -m doctest pkg/pkg.py
+echo Running doctests of pkgNoCLI - no output expected
+python -m doctest pkgNoCLI/pkgNoCLI.py
 
-echo Deactivating venv-pkg
+echo Deactivating venv-pkgNoCLI
 deactivate
 
 cd ..

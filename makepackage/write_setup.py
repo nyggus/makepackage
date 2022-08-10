@@ -1,14 +1,14 @@
-import pathlib
+from pathlib import Path
 
 
-def write_setup(path: pathlib.Path, package_name: str, CLI: bool) -> None:
+def write_setup(path: Path, package_name: str, CLI: bool) -> None:
     setup = f"""import setuptools
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
 extras_requirements = LEFT_CURLY_BRACKET
-    "dev": ["wheel", "black", "pytest"],
+    "dev": ["wheel", "black", "pytest", "mypy"],
 RIGHT_CURLY_BRACKET
 
 setuptools.setup(
@@ -19,7 +19,7 @@ setuptools.setup(
     description="[MAKEPACKAGE]",
     license='MIT',
     long_description=long_description,
-    long_description_content_type="text/x-md",
+    long_description_content_type="text/markdown",
     url="[MAKEPACKAGE]",
     packages=setuptools.find_packages(),
     classifiers=[

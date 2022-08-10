@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 extras_requirements = {
-    "dev": ["wheel==0.37.1", "black", "pytest", "mypy"],
+    "dev": ["wheel", "black", "pytest", "mypy", ],
 }
 
 setuptools.setup(
@@ -14,9 +14,9 @@ setuptools.setup(
     author_email="nyggus@gmail.com",
     description="Creating a structure of a simple Python package",
     long_description=long_description,
-    long_description_content_type="text/x-md",
+    long_description_content_type="text/markdown",
     license="MIT",
-    url="https://github.com/nyggus/perftest",
+    url="https://github.com/nyggus/makepackage",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",

@@ -1,19 +1,19 @@
 # Testing of `makepackage`
 
 The tests of `makepackage` consist of several steps:
-* package `pkg` is created (without CLI funtionality), using a shell script
-* the tests in package `pkg` are run (both `pytest`s and `doctest`s)
-* `makepackage` tests the resulting folder and file structure in the `pkg` package
-* package `pkgCLI` is created (with CLI funtionality), using a shell script
-* the tests in package `pkgCLI` are run (both `pytest`s and `doctest`s)
-* `makepackage` tests the resulting folder and file structure in the `pkgCLI` package
+* package `pkgNoCLI` (`pkgNoCLIWin` in Windows) is created (without CLI funtionality), using a shell script
+* the tests in package `pkgNoCLI`/`pkgNoCLIWin` are run (both `pytest`s and `doctest`s)
+fine
+* package `pkgCLIWithCLI` (`pkgCLIWithCLIWin`) is created (with CLI funtionality), using a shell script
+* the tests in package `pkgCLIWithCLI` (`pkgCLIWithCLIWin`) are run (both `pytest`s and `doctest`s)
+* `makepackage` tests (using `pytest`) whether the resulting folder and file structure in the both these packages is fine
 * all testing files are cleaned up
 
 All those steps are collected in shell scripts:
-* run_tests.sh for Linux
-* run_tests.bat for Windows
+* [run_tests.sh](run_tests.sh) for Linux
+* [run_tests.bat](run_tests.bat) for Windows
 
 Thus, enough to run one of these two scripts and all the steps will be done one by one. Observe what is happening during the process, as for instance `pytest` is run three times:
-* for `pkg`
-* for `pkgCLI`
-* for `makepackage`, based on `pkg` and `pkgCLI`
+* for `pkgNoCLI`/`pkgNoCLIWin`
+* for `pkgCLIWithCLI`/`pkgWithCLIWin`
+* for `makepackage`, based on `pkgNoCLI`/`pkgNoCLIWin` and `pkgWithCLI`/`pkgWithCLIWin`
