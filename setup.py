@@ -4,12 +4,12 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 extras_requirements = {
-    "dev": ["wheel==0.37.1", "black", "pytest"],
+    "dev": ["wheel==0.37.1", "black", "pytest", "mypy"],
 }
 
 setuptools.setup(
     name="makepackage",
-    version="0.1.0",
+    version="0.1.2",
     author="Nyggus",
     author_email="nyggus@gmail.com",
     description="Creating a structure of a simple Python package",
