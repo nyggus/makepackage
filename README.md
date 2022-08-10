@@ -1,5 +1,33 @@
 # `makepackage`: A Python package for creating a Python package with a simple structure
 
+## Installation
+
+Install the package from [PyPi](https://pypi.org/project/makepackage/):
+
+```shell
+$ pip install makepackage
+```
+
+
+## TL;DR: How to use `makepackage`
+
+To create a package that does not need a command-line argument, go to a directory where you want to create the structure of your package and run in shell
+
+```shell
+$ makepackage mypackage
+```
+
+where `mypackage` is the name of your package. That's it! You will have a self-standing package that you can now develop. Remember to fill in `[MAKEPACKAGE]` fields in setup.py and LICENSE.
+
+If you want to create a package with a command-line argument, add a `cli` flag after the name of the package:
+
+```shell
+$ makepackage mypackage cli
+```
+
+and here you are. Your package will get the command-line argument that is the same as the package's name.
+
+
 ## Rationale
 
 You may know the story. For over a year, I have been developing most of my projects as Python packages. I created a template, as doing the same thing manually every time was boring and slow. But such a template required much manual work, and every time I made some mistakes so that I had to look for them and fix.
@@ -108,7 +136,7 @@ Here are the assumptions `makepackage` makes:
 * the package is developed using `pytest` and `doctest` (you will find both implemented in the code of `ziuziu`)
 * MIT license is used (you can change it to any license you want, but remember also to change the license in setup.py)
 * in the development mode, `pytest`, `wheel` and `black` packages are additionally installed in the virtual environment (used for development)
-* you will need to fill setup.py in several places (namely, fields `author`, `author_email`, and `description`) and LICENSE in one place; you can easily find those places, as they are indicated with the `"[MAKEPACKAGE]"` mark
+* you will need to fill setup.py in several places (namely, fields `author`, `author_email`, and `description`) and LICENSE in one place; you can easily find those places, as they are indicated with the `"[MAKEPACKAGE]"` mark.
 
 Of course, this is a starting point, and you can now extend the package however you want. Once installed, `ziuziu` (or however you name the package) works. It has three functions, `foo()`, `bar()` and `baz()`, which all have tests implemented in the tests/ folder, and you can run them using the `pytest` command.
 
