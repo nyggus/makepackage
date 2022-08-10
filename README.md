@@ -1,5 +1,35 @@
 # `makepackage`: A Python package for packaging Python code
 
+## Installation
+
+Install the package from [PyPi](https://pypi.org/project/makepackage/):
+
+```shell
+$ pip install makepackage
+```
+
+
+## TL;DR: How to use `makepackage`
+
+To create a package that does not need a command-line argument, go to a directory where you want to create the structure of your package and run in shell
+
+```shell
+$ makepackage mypackage
+```
+
+where `mypackage` is the name of your package. That's it! You will have a self-standing package that you can now develop. Remember to fill in `[MAKEPACKAGE]` fields in setup.py and LICENSE.
+
+If you want to create a package with a command-line argument, add a `cli` flag after the name of the package:
+
+```shell
+$ makepackage mypackage cli
+```
+
+and here you are. Your package will get the command-line argument that is the same as the package's name.
+
+Now let's go into detail.
+
+
 ## Rationale and background
 
 Organizing Python code in a package has a lot of advantages and actually simplifies development — but the first hours can be tricky. To facilitate this process, you can use tools such as [Cookiecutter](https://cookiecutter.readthedocs.io/), but they themselves are quite advanced and offer a lot of functionalities that you need to learn — quite often, this complexity makes development more difficult, sometimes changing it to a nightmare. 
@@ -17,15 +47,14 @@ The use of `makepackage` is very simple, but this does not come without costs: i
 
 The idea behind `makepackage` is to offer a tool that creates a working simplistic package that one can extend and develop. And indeed, you will find in it tests (both `pytest`s and `doctest`s) that pass; you can install the package in the editable mode, and after that you will be able to import it. So, the resulting package is just fine, and you can immediately move to development.
 
-
-> `makepackage` offers one of many possible structures, and it assumes you will use `pytest` (plus, optionally, `doctest`) for testing. If you want to use other solutions,  you should either create a package manually or use another tool.
+> `makepackage` offers one of many possible structures, and it assumes you will use `pytest` for testing. If you want to use other solutions,  you should either create a package manually or use another tool.
 
 
 ## Using `makepackage`
 
 > The [tests](tests/) folder contains six shell scripts. Two of them show how to use `makepackage` in Linux, and two others do the same for Windows. One of the scripts shows how to create a package that does not need command-line interface while the other with CLI. Check out these two files for Linux: [`makepackage` without CLI](tests/run_makepackage_no_CLI.sh) and [`makepackage` with CLI](tests/run_makepackage_with_CLI.sh); and for Windows, these two files: [`makepackage` without CLI](tests/run_makepackage_no_CLI.bat) and [`makepackage` with CLI](tests/run_makepackage_with_CLI.bat).
 
-It's best to install and use `makepackage` through a virtual environment dedicated to this package. So, for example,
+It's best to install and use `makepackage` in a virtual environment. So, for example,
 
 ```shell
 $ python -m venv venv-makepackage
@@ -33,7 +62,7 @@ $ venv-package/bin/activate
 (venv-makepackage) $ pip install makepackage
 ```
 
-> Examples use Linux commands, but most of them will work the same way for Windows.
+> Examples show Linux commands, but any Windows user will know how to replace them with the corresponding Windows commands (though most commands will be the same in Linux and Windows; you simply need to change paths when activating a virtual environment in Windows).
 
 Now that we have activated the virtual environment and installed `makepackage` in it, we are ready to create a package of our own. First, navigate to a folder where you want to create the package, and run the following command:
 
@@ -77,7 +106,7 @@ And that's it, you're ready to develop `ziuziu`. Now you can run tests:
 You will see that the package is created with 11 `pytest` tests, and they should all pass (you will see the output from `pytest`). All `doctest`s should pass, too — that means you should see no output from `doctest`.
 
 
-> When you create a package using `makepackage`, you can read the README file of the new package. It contains additional information about package development, such as buidling the package, installing it, and uploading to PyPi.
+> When you create a package using `makepackage`, you can read the README file of the new package. It contains some essential information about package development, such as building the package, installing it, and uploading to PyPi.
 
 ## Structure of a package created using `makepackage`
 
@@ -103,10 +132,10 @@ You can use various structures to create a Python package. `makepackage` uses on
 When you used the `makepackage` command with the `cli` argument, the `ziuziu/ziuziu` folder will also include a `__main__.py` file.
 
 Here are the assumptions `makepackage` makes:
-* the package is developed using `pytest` and `doctest` (you will find both implemented in the code of `ziuziu`; you can easily get rid of `doctest`s, but if you've got an idea of removing `pytest`s, this means you probably should have not used `makepackage`)
-* MIT license is used (you can change it to any license you want, but remember also to change the license type in setup.py)
-* in the development mode, `pytest`, `wheel`, `black` and `mypy` packages are additionally installed in the virtual environment (they are used during package development and building)
-* you will need to fill in setup.py in several places (namely, fields `author`, `author_email`, and `description`) and LICENSE in one place; you can easily find those places, as they are indicated with the `"[MAKEPACKAGE]"` mark
+* the package is developed using `pytest` and `doctest` (you will find both implemented in the code of `ziuziu`)
+* MIT license is used (you can change it to any license you want, but remember also to change the license in setup.py)
+* in the development mode, `pytest`, `wheel`, `black` and `mypy` packages are additionally installed in the virtual environment (used for development); they are *not* installed when one installs the package from PyPi
+* you will need to fill in setup.py in several places (namely, fields `author`, `author_email`, and `description`) and LICENSE in one place; you can easily find those places, as they are indicated with the `"[MAKEPACKAGE]"` mark.
 
 Of course, this is a starting point, and you can now extend the package however you want. Once installed, `ziuziu` (or however you name the package) works. It has three functions, `foo()`, `bar()` and `baz()`, which all have tests implemented in the tests/ folder, and you can run them using the `pytest` command as shown above.
 
@@ -123,7 +152,7 @@ Those who tried to create such a package manually know that quite often somethin
 
 As mentioned before, the first step is to fill in several fields in setup.py and author in LICENSE. Then you need to create a virtual environment, in which you install the package in the editable mode. And that's all you need to start development. 
 
-From now on, you're on your own. However, a package created using `makepackage` comes with some help for inexperienced users. They can see how to write tests (using `pytest`), how to use a conftest.py file (for `pytest`ing), how to write fixtures and use parametrized tests (again, for `pytest`ing), how to import the package's modules and functions, and the like. These are just some basic development tools. 
+From now on, you're on your own. However, a package created using `makepackage` comes with some help for inexperienced users. They can see how to write tests (using `pytest`), how to use a conftest.py file (for `pytest`ing), how to write fixtures and parametrized tests (again for `pytest`ing), how to import the package's modules and functions, and the like. These are just some basic development tools. 
 
 There is one thing I'd like to stress, and it's related to imports (actually, imports sometimes happen to pose some unexpected problems during Python coding). When you add a new module to the source folder (in our example, this is ziuziu/), e.g., ziuziu/another_ziuziu.py, then in the main `ziuziu` module you can import it as `from ziuziu import another_ziuziu` or `from ziuziu.another_ziuziu import another_foo`. Note that the regular approach you would use, that is, `import another_ziuziu`, will not work here.
 
@@ -131,3 +160,8 @@ There is one thing I'd like to stress, and it's related to imports (actually, im
 ## Testing
 
 Testing of `makepackage` combines shell scripts and `pytest`. Therefore, running tests on Linux and Windows requires running different shell scripts. You will learn more from [here](tests/README.md).
+
+
+## Contribution
+
+You can submit an issue or a pull request. However, do remember that `makepackage` is intended to be simple to use, so the assumption of any change is that the package's API does not change.

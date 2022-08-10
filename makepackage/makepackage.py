@@ -30,6 +30,7 @@ class FolderExistsError(Exception):
 
 
 def makepackage(package_name: str, CLI: bool) -> None:
+    """Create a package package_name, with or without CLI."""
 
     # create directories
     root_path = (Path(".") / f"{package_name}").absolute()
@@ -58,7 +59,8 @@ def makepackage(package_name: str, CLI: bool) -> None:
         write_CLI_main(module_path, package_name)
 
 
-def make_dirs(root_path: Path, package_name: str) -> None:
+def make_dirs(root_path: pathlib.Path, package_name: str) -> None:
+    """Create the directory structure."""
     check_if_not(
         root_path.exists(),
         FolderExistsError,
