@@ -1,6 +1,10 @@
 import setuptools
+from pathlib import Path
 
-with open("README.md", "r") as fh:
+ROOT = Path(__file__).resolve().parent
+
+
+with open(ROOT / "README.md", "r") as fh:
     long_description = fh.read()
 
 extras_requirements = {
