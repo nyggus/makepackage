@@ -180,9 +180,9 @@ In technical terms, to contribute,
 * `$ git push --set-upstream origin new-branch` — this will create the branch in the repo and will push the changes to it.
 * create a pull request to the original repository; when doing so, please explain the changes in detail
 
-If someone else is developing `makepackage` at the same time, you may have to solve the resulting conflicts. How to say it... don't break down! Be patient!
+If someone else is developing `makepackage` at the same time, you may have to solve the resulting conflicts. How to say it... be patient and don't break down! Don't break down your computer, either! Keep your nerves in check!
 
-Now, you can sit and wait for a review of your proposal; use this time for thinking about how to improve the package even more :-D!
+Now, you can sit and wait for a review of your proposal; use this time for thinking about how to improve the package even more :smiley:. 
 
 
 #### Keep `makepackage` simple
