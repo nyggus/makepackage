@@ -164,4 +164,56 @@ Testing of `makepackage` combines shell scripts and `pytest`. Therefore, running
 
 ## Contribution
 
-You can submit an issue or a pull request. However, do remember that `makepackage` is intended to be simple to use, so the assumption of any change is that the package's API does not change.
+Everyone is invited to develop `makepackage`. You can submit an issue or a pull request. Nonetheless, be aware that I will only accept proposals that
+* keep the current API of the package, unless the proposed change is so great that the cost of changing the API is relatively small compared to what the new functionality offers
+* are covered by unit tests
+* are well documented (if needed)
+* are coded in a similar style that the current code uses
+* work under both Windows and Linux
+
+Below, you can read more about these aspects.
+
+> Do remember to increment `makepackage`'s version. Use [semantic versioning 2.0.0](https://semver.org/).
+
+In technical terms, to contribute,
+* fork the repository and clone it to your machine
+* create a new branch: `$ git checkout -b new-branch`, where `new-branch` is the name of a branch, so remember to name it in a way that reflects what the branch changes (and please, do not use the name of `new-branch` or similar)
+* once you're done with all the changes and are ready to commit the changes, you can use `git add path` to add each file separately (`path` being a relative path to a file you want to commit); after each such command, do `$ git commit -m "What I did"`, the comment explaining what is changed in the committed file. If you want to add all the files at the same time, do `$ git add .`.
+* `$ git push --set-upstream origin new-branch` — this will create the branch in the repo and will push the changes to it.
+* create a pull request to the original repository; when doing so, please explain the changes in detail
+
+If someone else is developing `makepackage` at the same time, you may have to solve the resulting conflicts. How to say it... be patient and don't break down! Don't break down your computer, either! Keep your nerves in check!
+
+Now, you can sit and wait for a review of your proposal; use this time for thinking about how to improve the package even more :smiley:. 
+
+
+#### Keep the current API of the package
+
+This, for instance, means that `makepackage`'s API does not offer different licences, structures of the root folder, and the like. Also, the API does not offer numerous arguments to enable the user to fill in the required fields of setup.py; the user can do it directly in the file, an approach that is easier than providing this information through command-line arguments. No GUI, too: just a simple shell command.
+
+The simpler the API, the easier the package is to use. The idea behind `makepackage` was to bring a *really* simply API to create a package. This simplicity cannot come without cost, but the cost does not seem that great. True, if one wants to create a different organization of the package or wants to use `unittest` instead of `pytest`, then one will have to choose a different tool or do it manually. This is the main cost of simplicity we have to pay, but had `makepackage` enabled the user to choose from different options, the package's API would have been far more complicated. This would mean the main purpose behind creating the package — crreating the structure of a Python package in an easy way — would not have been accomplished. 
+
+Simply put, `makepackage` got a simple API and does not offer too many choices, and I want to keep it that way.
+
+
+#### Cover all functionality by unit tests
+
+Add unit tests to every new functionality or change, unless the change does not change the package's functioning whatsoever. Remember we use `pytest` and `doctest`.
+
+
+#### Use readable and sufficient documentation
+
+If you add a new functionality or change the existing one, then you have to document it in documentation: README and docstrings. Of course, don't overdo, but note that this README is long and detailed. We have the [TL;DR: How to use makepackage](#tldr-how-to-use-makepackage) section, which is short and concise. Then, we go deep when explaining the details. Keep this approach.
+
+
+#### Maintain the current coding style
+
+This is important. Keep the current style, and please use `black` to format code. By coding style I do not only mean what `black` changes; I mean other import things, such as the following:
+
+* Have you noticed that the only classes that are defined in the package are those for custom exceptions? Try not to change that and do not base any new functionality on a class, unless this is a better and more natural approach.
+* `makepackage` uses custom exceptions to handle the user's mistakes. Throwing custom errors inside `makepackage` functions improves traceback, by using well-named exception classes and moving the traceback into the actual location in code where the exception occurred.
+
+
+#### Work under both Windows and Linux
+
+`makepackage` works in both these OSs, so if you want to propose something new, make sure this works under both these OSs. If you have problems with doing so, please contant the repo's maintainer.
