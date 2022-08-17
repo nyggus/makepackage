@@ -173,6 +173,8 @@ Everyone is invited to develop `makepackage`. You can submit an issue or a pull 
 
 Below, you can read more about these aspects.
 
+> Do remember to increment `makepackage`'s version. Use [semantic versioning 2.0.0](https://semver.org/).
+
 In technical terms, to contribute,
 * fork the repository and clone it to your machine
 * create a new branch: `$ git checkout -b new-branch`, where `new-branch` is the name of a branch, so remember to name it in a way that reflects what the branch changes (and please, do not use the name of `new-branch` or similar)
