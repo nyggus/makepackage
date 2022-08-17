@@ -164,23 +164,25 @@ Testing of `makepackage` combines shell scripts and `pytest`. Therefore, running
 
 ## Contribution
 
-Everyone is invited to develop `makepackage`. Nonetheless, be aware that we will only accept proposals that
+Everyone is invited to develop `makepackage`. Nonetheless, be aware that I will only accept proposals that
 * keep the package's API simple
 * are covered by unit tests
 * are well documented (if needed)
-* are coded in similar style that the current code
-* make under both Windows and Linux
+* are coded in a similar style that the current code uses
+* work under both Windows and Linux
 
 Below, you can read more about these aspects.
 
 In technical terms, to contribute,
 * fork the repository and clone it to your machine
-* create a new branch: `$ git checkout -b new-branch`; remember to name it in a way that reflects what the branch changes
-* once you're done with all the changes and are ready to push, you can use `git add path` to add each file separately; after each such command, do `$ git commit -m "What I did"`, the comment explaining what is changed in the committed file. If you want to add all the files at the same time, do `$ git add .`.
+* create a new branch: `$ git checkout -b new-branch`, where `new-branch` is the name of a branch, so remember to name it in a way that reflects what the branch changes (and please, do not use the name of `new-branch` or similar)
+* once you're done with all the changes and are ready to commit the changes, you can use `git add path` to add each file separately (`path` being a relative path to a file you want to commit); after each such command, do `$ git commit -m "What I did"`, the comment explaining what is changed in the committed file. If you want to add all the files at the same time, do `$ git add .`.
 * `$ git push --set-upstream origin new-branch` — this will create the branch in the repo and will push the changes to it.
 * create a pull request to the original repository; when doing so, please explain the changes in detail
 
-And now you can wait for a review of your proposal. 
+If someone else is developing `makepackage` at the same time, you may have to solve the resulting conflicts. How to say it... don't break down! Be patient!
+
+Now, you can sit and wait for a review of your proposal; use this time for thinking about how to improve the package even more :-D!
 
 
 #### Keep `makepackage` simple
