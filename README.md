@@ -201,15 +201,15 @@ Add unit tests to every new functionality or change, unless the change does not 
 
 #### Use readable and sufficient documentation
 
-If you add a new functionality of change the existing one, then you have to document it in documentation: README and docstrings. Of course, don't overdo, but note that this README is long and detailed. We have the [TL;DR: How to use makepackage](#tldr-how-to-use-makepackage) section, which is short and concise. Then, we go deep when explaining the details. Keep this approach.
+If you add a new functionality or change the existing one, then you have to document it in documentation: README and docstrings. Of course, don't overdo, but note that this README is long and detailed. We have the [TL;DR: How to use makepackage](#tldr-how-to-use-makepackage) section, which is short and concise. Then, we go deep when explaining the details. Keep this approach.
 
 
 #### Maintain the current coding style
 
-This is important. Keep the current style, and please use `black`. By coding style I do not only mean what `black` will change; I mean the other import things, like:
+This is important. Keep the current style, and please use `black` to format code. By coding style I do not only mean what `black` changes; I mean other import things, such as the following:
 
 * Have you noticed that the only classes that are defined in the package are those for custom exceptions? Try not to change that and do not base any new functionality on a class, unless this is a better and more natural approach.
-* `makepackage` uses custom exceptions to handle the user's mistakes.
+* `makepackage` uses custom exceptions to handle the user's mistakes. Throwing custom errors inside `makepackage` functions improves traceback, by using well-named exception classes and moving the traceback into the actual location in code where the exception occurred.
 
 
 #### Work under both Windows and Linux
