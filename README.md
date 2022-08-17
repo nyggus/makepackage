@@ -214,4 +214,4 @@ This is important. Keep the current style, and please use `black` to format code
 
 #### Work under both Windows and Linux
 
-`makepackage` works in both these OSs, so if you want to propose something new, make sure this works under both these OSs. If you have problems with doing so, please contant the repo's maintainer (you can do so even by submitting a new issue).
+`makepackage` works in both these OSs, so if you want to propose something new, make sure this works under both these OSs. If you have problems with doing so, please contant the repo's maintainer.
