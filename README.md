@@ -164,8 +164,8 @@ Testing of `makepackage` combines shell scripts and `pytest`. Therefore, running
 
 ## Contribution
 
-Everyone is invited to develop `makepackage`. Nonetheless, be aware that I will only accept proposals that
-* keep the package's API simple
+Everyone is invited to develop `makepackage`. You can submit an issue or a pull request. Nonetheless, be aware that I will only accept proposals that
+* keep the current API of the package, unless the proposed change is so great that the cost of changing the API is relatively small compared to what the new functionality offers
 * are covered by unit tests
 * are well documented (if needed)
 * are coded in a similar style that the current code uses
@@ -185,25 +185,26 @@ If someone else is developing `makepackage` at the same time, you may have to so
 Now, you can sit and wait for a review of your proposal; use this time for thinking about how to improve the package even more :smiley:. 
 
 
-#### Keep `makepackage` simple
+#### Keep the current API of the package
 
-This, for instance, means that `makepackage`'s API does not offer different licences, structures of the root folder, and the like. Also, the API does not offer numerous arguments to enable the user to fill in the required fields of setup.py; the user can do it directly in the file, an approach that is easier than providing this information through command-line arguments.
+This, for instance, means that `makepackage`'s API does not offer different licences, structures of the root folder, and the like. Also, the API does not offer numerous arguments to enable the user to fill in the required fields of setup.py; the user can do it directly in the file, an approach that is easier than providing this information through command-line arguments. No GUI, too: just a simple shell command.
 
-The simpler the API, the easier the package is to use. The idea behind `makepackage` was to bring a *really* simply API to create a package. This simplicity cannot come without cost, but the cost does not seem that great. True, if one wants to create a different organization of the package or wants to use `unittest` instead of `pytest`, then one will have to choose a different tool or do it manually.
+The simpler the API, the easier the package is to use. The idea behind `makepackage` was to bring a *really* simply API to create a package. This simplicity cannot come without cost, but the cost does not seem that great. True, if one wants to create a different organization of the package or wants to use `unittest` instead of `pytest`, then one will have to choose a different tool or do it manually. This is the main cost of simplicity we have to pay, but had `makepackage` enabled the user to choose from different options, the package's API would have been far more complicated. This would mean the main purpose behind creating the package — crreating the structure of a Python package in an easy way — would not have been accomplished. 
 
-#### Covered all functionality by unit tests
+Simply put, `makepackage` got a simple API and does not offer too many choices, and I want to keep it that way.
+
+
+#### Cover all functionality by unit tests
 
 Add unit tests to every new functionality or change, unless the change does not change the package's functioning whatsoever. Remember we use `pytest` and `doctest`.
 
-You can submit an issue or a pull request. However, do remember that `makepackage` is intended to be simple to use, so the assumption of any change is that the package's API does not change.
+
+#### Use readable and sufficient documentation
+
+If you add a new functionality of change the existing one, then you have to document it in documentation: README and docstrings. Of course, don't overdo, but note that this README is long and detailed. We have the [TL;DR: How to use makepackage](#tldr-how-to-use-makepackage) section, which is short and concise. Then, we go deep when explaining the details. Keep this approach.
 
 
-#### Are well documented
-
-If you add a new functionality of change the existing one, then you have to document it in documentation: README and docstrings.
-
-
-#### Maintain current coding style
+#### Maintain the current coding style
 
 This is important. Keep the current style, and please use `black`. By coding style I do not only mean what `black` will change; I mean the other import things, like:
 
