@@ -32,22 +32,22 @@ Now let's go into detail.
 
 ## Rationale and background
 
-Organizing Python code in a package has a lot of advantages and actually simplifies development — but the first hours can be tricky. To facilitate this process, you can use tools such as [Cookiecutter](https://cookiecutter.readthedocs.io/), but they themselves are quite advanced and offer a lot of functionalities that you need to learn — quite often, this complexity makes development more difficult, sometimes changing it to a nightmare. 
+Organizing Python code in a package has a lot of advantages and can significantly simplify development — but the first hours can be tricky. To facilitate this process, you can use tools such as [Cookiecutter](https://cookiecutter.readthedocs.io/), but they themselves are quite advanced and offer a lot of functionalities that you need to learn — quite often, this complexity makes development more difficult, sometimes changing the hours spent with the tool into a nightmare. 
 
 To facilitate this step, I created a package template and have been using it for about a year. Life got easier. But the template required some manual work that could be automated. This is when I thought that a script would be better, so I wrote one. It worked fine indeed, and things got even easier. And then I thought, as this is so useful for me, why not make it useful for others? So, I made this package, and now you can use it just like me.
 
-`makepackage` offers only one function, available via shell. The only thing you need to do is to install `makepackage` (e.g., in a virtual environment or in your system Python installation) and run a simple shell command (which works under both Linux and Windows). The command, as you will see below, takes one required argument: a package's name; you can add `cli` to create a CLI package, as otherwise it will not have command-line interface.
+`makepackage` offers only one function, available via shell. The only thing you need to do is to install `makepackage` (preferably in a virtual environment you will use only to create new packages) and run a simple shell command (which works under both Linux and Windows). The command, as you will see below, takes one required argument: a package's name; you can add `--cli` to create a CLI package, as otherwise (without the flag) it will not have command-line interface.
 
 The use of `makepackage` is very simple, but this does not come without costs: it creates just one type of structure, though you can change it manually:
 * you have to fill in some fields in setup.py
-* setup.py will include `pytest`, `wheel`, `black` and `mypy` in the `dev` mode; you can remove them manually before installation
-* the package will use `pytest` for unit testing and `doctest`  for documentation testing
+* setup.py will include `pytest`, `wheel`, `black` and `mypy` in the `dev` mode; you can remove them manually before installing the package in the editable mode
+* the package will use `pytest` for unit testing and `doctest` for documentation testing
 
 > You will find annotated code in `ziuziu` (given the simplicity of the functions, the annotations are very simple), and you can run `mypy` on it, with success.
 
-The idea behind `makepackage` is to offer a tool that creates a working simplistic package that one can extend and develop. And indeed, you will find in it tests (both `pytest`s and `doctest`s) that pass; you can install the package in the editable mode, and after that you will be able to import it. So, the resulting package is just fine, and you can immediately move to development.
+The idea behind `makepackage` is to offer a tool that creates a working package with a simple but common structure, which can be then extended and developed. And indeed, you will find in it tests (both `pytest`s and `doctest`s) that pass; you can install the package in the editable mode, and after that you will be able to import it. So, the resulting package is just fine, and you can immediately move to development.
 
-> `makepackage` offers one of many possible structures, and it assumes you will use `pytest` for testing. If you want to use other solutions,  you should either create a package manually or use another tool.
+> `makepackage` offers one of many possible structures, and it assumes you will use `pytest` for testing. If you want to use other solutions, you should either create a package manually or use another tool.
 
 
 ## Using `makepackage`
@@ -59,7 +59,7 @@ It's best to install and use `makepackage` in a virtual environment. So, for exa
 ```shell
 $ python -m venv venv-makepackage
 $ venv-package/bin/activate
-(venv-makepackage) $ pip install makepackage
+(venv-makepackage) $ python -m pip install makepackage
 ```
 
 > Examples show Linux commands, but any Windows user will know how to replace them with the corresponding Windows commands (though most commands will be the same in Linux and Windows; you simply need to change paths when activating a virtual environment in Windows).
@@ -77,10 +77,10 @@ This creates a `ziuziu` package; `ziuziu` will not have command-line interface. 
 ziuziu
 ```
 
-If you want to create a package with command-line interface, use a command-line argument `cli`, like this:
+If you want to create a package with command-line interface, use a command-line flag `--cli`, like this:
 
 ```shell
-(venv-makepackage) $ makepackage ziuziu cli
+(venv-makepackage) $ makepackage ziuziu --cli
 ```
 
 > As we used the same name — `ziuziu` — again, we would get an error; so, you should first remove the previous installation of `ziuziu`, use a different name for the package, or create the package in a different location.
@@ -110,7 +110,7 @@ You will see that the package is created with 11 `pytest` tests, and they should
 
 ## Structure of a package created using `makepackage`
 
-You can use various structures to create a Python package. `makepackage` uses one of them, a simple (though not the simplest) one. You will see the following structure of the ziuziu/ folder (so, of the `ziuziu` package):
+You can use various structures to create a Python package. `makepackage` uses one of them, a simple (though not the simplest) but quite common one. You will see the following structure of the ziuziu/ folder (so, of the `ziuziu` package):
 
 ```shell
 .
@@ -146,15 +146,16 @@ Those who tried to create such a package manually know that quite often somethin
 >> * a conftest.py file in the tests/ folder
 >> * simple annotations in the `foo()`, `bar()` and `baz()` functions of the newly created package
 >> * `doctest`s in the above functions
+>> * packages installed in the editable mode
 
 
 # Notes on further development of your package
 
 As mentioned before, the first step is to fill in several fields in setup.py and author in LICENSE. Then you need to create a virtual environment, in which you install the package in the editable mode. And that's all you need to start development. 
 
-From now on, you're on your own. However, a package created using `makepackage` comes with some help for inexperienced users. They can see how to write tests (using `pytest`), how to use a conftest.py file (for `pytest`ing), how to write fixtures and parametrized tests (again for `pytest`ing), how to import the package's modules and functions, and the like. These are just some basic development tools. 
+From now on, you're on your own. However, a package created using `makepackage` comes with some help for inexperienced users. They can see how to write tests (using `pytest`), how to use a conftest.py file (for `pytest`ing), how to write fixtures and parametrized tests (again for `pytest`ing), how to import the package's modules and functions, how to write `doctest`s, and the like. These are just some basic development tools. 
 
-There is one thing I'd like to stress, and it's related to imports (actually, imports sometimes happen to pose some unexpected problems during Python coding). When you add a new module to the source folder (in our example, this is ziuziu/), e.g., ziuziu/another_ziuziu.py, then in the main `ziuziu` module you can import it as `from ziuziu import another_ziuziu` or `from ziuziu.another_ziuziu import another_foo`. Note that the regular approach you would use, that is, `import another_ziuziu`, will not work here.
+There is one thing I'd like to stress, and it's related to imports. (The truth is, imports sometimes happen to pose some unexpected problems during Python coding). When you add a new module to the source folder (in our example, this is ziuziu/), e.g., ziuziu/another_ziuziu.py, then in the main `ziuziu` module you can import it as `from ziuziu import another_ziuziu` or `from ziuziu.another_ziuziu import another_foo`. Note that the regular approach you would use, that is, `import another_ziuziu`, will not work here.
 
 
 ## Testing
@@ -191,24 +192,24 @@ Now, you can sit and wait for a review of your proposal; use this time for think
 
 This, for instance, means that `makepackage`'s API does not offer different licences, structures of the root folder, and the like. Also, the API does not offer numerous arguments to enable the user to fill in the required fields of setup.py; the user can do it directly in the file, an approach that is easier than providing this information through command-line arguments. No GUI, too: just a simple shell command.
 
-The simpler the API, the easier the package is to use. The idea behind `makepackage` was to bring a *really* simply API to create a package. This simplicity cannot come without cost, but the cost does not seem that great. True, if one wants to create a different organization of the package or wants to use `unittest` instead of `pytest`, then one will have to choose a different tool or do it manually. This is the main cost of simplicity we have to pay, but had `makepackage` enabled the user to choose from different options, the package's API would have been far more complicated. This would mean the main purpose behind creating the package — crreating the structure of a Python package in an easy way — would not have been accomplished. 
+The simpler the API, the easier the package is to use. The idea behind `makepackage` was to bring a *really* simple API to create a package. This simplicity cannot come without cost, but the cost does not seem that great. True, if one wants to create a different organization of the package or wants to use `unittest` instead of `pytest`, then one will have to choose a different tool or do it manually. This is the main cost of simplicity we have to pay, but had `makepackage` enabled the user to choose from different options, the package's API would have been far more complicated. This would mean the main purpose behind creating the package — crreating the structure of a Python package in an easy way — would not have been accomplished. 
 
-Simply put, `makepackage` got a simple API and does not offer too many choices, and I want to keep it that way.
+Simply put, `makepackage` has a simple API and does not offer too many choices, and I want to keep it that way.
 
 
 #### Cover all functionality by unit tests
 
-Add unit tests to every new functionality or change, unless the change does not change the package's functioning whatsoever. Remember we use `pytest` and `doctest`.
+Add unit tests to every new functionality or change, unless the change does not change the package's functioning whatsoever. Remember that `makepackage` is tested with `pytest` and `doctest`.
 
 
 #### Use readable and sufficient documentation
 
-If you add a new functionality or change the existing one, then you have to document it in documentation: README and docstrings. Of course, don't overdo, but note that this README is long and detailed. We have the [TL;DR: How to use makepackage](#tldr-how-to-use-makepackage) section, which is short and concise. Then, we go deep when explaining the details. Keep this approach.
+If you add a new functionality or change the existing one, you have to document it in documentation: README and docstrings. Of course, don't overdo, but note that this README is long and detailed. It has the [TL;DR: How to use makepackage](#tldr-how-to-use-makepackage) section, which is short and concise. Then, we go deep when explaining the details. Keep this approach.
 
 
 #### Maintain the current coding style
 
-This is important. Keep the current style, and please use `black` to format code. By coding style I do not only mean what `black` changes; I mean other import things, such as the following:
+This is important. Keep the current style, and please use `black` to format code. By coding style I do not only mean what `black` changes; I mean other important things, such as the following:
 
 * Have you noticed that the only classes that are defined in the package are those for custom exceptions? Try not to change that and do not base any new functionality on a class, unless this is a better and more natural approach.
 * `makepackage` uses custom exceptions to handle the user's mistakes. Throwing custom errors inside `makepackage` functions improves traceback, by using well-named exception classes and moving the traceback into the actual location in code where the exception occurred.
@@ -217,3 +218,5 @@ This is important. Keep the current style, and please use `black` to format code
 #### Work under both Windows and Linux
 
 `makepackage` works in both these OSs, so if you want to propose something new, make sure this works under both these OSs. If you have problems with doing so, please contant the repo's maintainer.
+
+However, if you can check if `makepackage` works fine under a different OS, please do so and add it to this section.
