@@ -13,7 +13,7 @@ extras_requirements = {
 
 setuptools.setup(
     name="makepackage",
-    version="0.1.6",
+    version="0.1.7",
     author="Nyggus",
     author_email="nyggus@gmail.com",
     description="Creating a structure of a simple Python package",
