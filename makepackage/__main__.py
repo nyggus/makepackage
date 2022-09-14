@@ -31,7 +31,10 @@ def _read_cli_args():
     )
     package_name = sys.argv[1]
     try:
-        CLI = True if sys.argv[2].lower() == "cli" else False
+        if sys.argv[2].lower() in ("--cli", "-cli", "cli"):
+            CLI = True
+        else:
+            CLI = False
     except IndexError:
         CLI = False
     print(
