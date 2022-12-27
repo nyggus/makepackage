@@ -11,7 +11,7 @@ from makepackage import (
 def main():
     package_name, CLI = _read_cli_args()
     makepackage(package_name, CLI)
-    print_final_info
+    print_final_info(package_name)
 
 
 def _read_cli_args():
@@ -31,7 +31,10 @@ def _read_cli_args():
     )
     package_name = sys.argv[1]
     try:
-        CLI = True if sys.argv[2].lower() == "cli" else False
+        if sys.argv[2].lower() in ("--cli", "-cli", "cli"):
+            CLI = True
+        else:
+            CLI = False
     except IndexError:
         CLI = False
     print(
@@ -43,9 +46,9 @@ def _read_cli_args():
 
 def print_final_info(package_name: str) -> None:
     print(
-        f"Package <{package_name}> has been created.\n"
-        "Check out above if all the tests (both pytests and doctests) have passed - they should."
-        "To finish, you need to fill in the following fields in setup.py:\n"
+        "\n"
+        f"Package <{package_name}> has been created."
+        "\nTo finish, you need to fill in the following fields in setup.py:\n"
         "  - author\n"
         "  - author_email\n"
         "  - description (this is a short description, as the long one is taken from README)\n"
