@@ -11,7 +11,7 @@ from makepackage import (
 def main():
     package_name, CLI = _read_cli_args()
     makepackage(package_name, CLI)
-    print_final_info()
+    print_final_info(package_name)
 
 
 def _read_cli_args():
