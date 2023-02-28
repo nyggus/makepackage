@@ -58,3 +58,7 @@ env.bak/
 venv.bak/
 venv_*/
 venv-*/
+
+# Project files
+.idea
+.vscode
