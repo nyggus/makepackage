@@ -29,7 +29,7 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
     config["tool.setuptools"] = {"packages": [f"{package_name}"]}
 
     if CLI:
-        config["project.scripts"] = {f"{package_name}": f"{package_name}.__main__:main"}
+        config["project.scripts"] = {f"{package_name}": f'"{package_name}.__main__:main"'}
 
     config["project.optional-dependencies"] = {
         "cli": ["wheel", "black", "pytest", "mypy"]
