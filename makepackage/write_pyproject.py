@@ -8,16 +8,16 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
     # Add sections to the ConfigParser object
     config["build-system"] = {
         "requires": ["setuptools>=61.0", "easycheck"],
-        "build-backend": "setuptools.build_meta",
+        "build-backend": '"setuptools.build_meta"',
     }
     config["project"] = {
-        "name": f"{package_name}",
-        "version": "0.1.0",
+        "name": f"'{package_name}'",
+        "version": '"0.1.0"',
         "authors": {"name": "[MAKEPACKAGE]", "email": "[MAKEPACKAGE]"},
-        "description": "[MAKEPACKAGE]",
-        "readme": "README.md",
+        "description": '"[MAKEPACKAGE]"',
+        "readme": '"README.md"',
         "license": {"file": "LICENSE"},
-        "requires-python": ">=3.8",
+        "requires-python": '">=3.8"',
         "dependencies": ["easycheck"],
         "classifiers": [
             "Programming Language :: Python :: 3",
@@ -25,7 +25,7 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
             "Operating System :: OS Independent",
         ],
     }
-    config["project.urls"] = {"Homepage": "[MAKEPACKAGE]"}
+    config["project.urls"] = {"Homepage": '"[MAKEPACKAGE]"'}
     config["tool.setuptools"] = {"packages": [f"{package_name}"]}
 
     if CLI:
