@@ -7,7 +7,7 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
 
     # Add sections to the ConfigParser object
     config["build-system"] = {
-        "requires": ["setuptools>=61.0", "easycheck"],
+        "requires": ["setuptools>=61.0"],
         "build-backend": '"setuptools.build_meta"',
     }
     config["project"] = {
@@ -32,7 +32,7 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
         config["project.scripts"] = {f"{package_name}": f'"{package_name}.__main__:main"'}
 
     config["project.optional-dependencies"] = {
-        "cli": ["wheel", "black", "pytest", "mypy"]
+        "dev": ["wheel", "black", "pytest", "mypy"]
     }
 
     with open(path / "pyproject.toml", "w") as f:
