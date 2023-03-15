@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=61.0", "easycheck"]
+requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -18,7 +18,7 @@ classifiers=[
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/nyggus/makepackage"
+homepage = "https://github.com/nyggus/makepackage"
 
 [tool.setuptools]
 packages = ["makepackage"]
@@ -27,4 +27,4 @@ packages = ["makepackage"]
 makepackage = "makepackage.__main__:main"
 
 [project.optional-dependencies]
-cli = ["wheel", "black", "pytest", "mypy"]
+dev = ["wheel", "black", "pytest", "mypy"]
