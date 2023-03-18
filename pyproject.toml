@@ -27,4 +27,4 @@ packages = ["makepackage"]
 makepackage = "makepackage.__main__:main"
 
 [project.optional-dependencies]
-dev = ["wheel", "black", "pytest", "mypy"]
+dev = ["wheel", "black", "pytest", "mypy", "build"]
