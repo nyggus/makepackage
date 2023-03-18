@@ -16,7 +16,7 @@ To create a package that does not need a command-line argument, go to a director
 $ makepackage mypackage
 ```
 
-where `mypackage` is the name of your package. That's it! You will have a self-standing package that you can now develop. Remember to fill in `[MAKEPACKAGE]` fields in setup.py and LICENSE.
+where `mypackage` is the name of your package. That's it! You will have a self-standing package that you can now develop. Remember to fill in `[MAKEPACKAGE]` fields in pyproject.toml and LICENSE.
 
 If you want to create a package with a command-line argument, add a `cli` flag after the name of the package:
 
@@ -38,8 +38,8 @@ To facilitate this step, I created a package template and have been using it for
 
 The use of `makepackage` is very simple, but this does not come without costs: it creates just one type of structure, though you can change it manually:
 
-- you have to fill in some fields in setup.py
-- setup.py will include `pytest`, `wheel`, `black` and `mypy` in the `dev` mode; you can remove them manually before installing the package in the editable mode
+- you have to fill in some fields in pyproject.toml
+- pyproject.toml will include `pytest`, `wheel`, `black` and `mypy` in the `dev` mode; you can remove them manually before installing the package in the editable mode
 - the package will use `pytest` for unit testing and `doctest` for documentation testing
 
 > You will find annotated code in `ziuziu` (given the simplicity of the functions, the annotations are very simple), and you can run `mypy` on it, with success.
@@ -115,7 +115,7 @@ You can use various structures to create a Python package. `makepackage` uses on
 +-- LICENSE
 +-- README.md
 +-- pytest.ini
-+-- setup.py
++-- pyproject.toml
 +-- tests
 |  +-- __init__.py
 |  +-- conftest.py
@@ -131,9 +131,9 @@ When you used the `makepackage` command with the `cli` argument, the `ziuziu/ziu
 Here are the assumptions `makepackage` makes:
 
 - the package is developed using `pytest` and `doctest` (you will find both implemented in the code of `ziuziu`)
-- MIT license is used (you can change it to any license you want, but remember also to change the license in setup.py)
+- MIT license is used (you can change it to any license you want, but remember also to change the license in pyproject.toml)
 - in the development mode, `pytest`, `wheel`, `black` and `mypy` packages are additionally installed in the virtual environment (used for development); they are _not_ installed when one installs the package from PyPi
-- you will need to fill in setup.py in several places (namely, fields `author`, `author_email`, and `description`) and LICENSE in one place; you can easily find those places, as they are indicated with the `"[MAKEPACKAGE]"` mark.
+- you will need to fill in pyproject.toml in several places (namely, fields `author`, `author_email`, and `description`) and LICENSE in one place; you can easily find those places, as they are indicated with the `"[MAKEPACKAGE]"` mark.
 
 Of course, this is a starting point, and you can now extend the package however you want. Once installed, `ziuziu` (or however you name the package) works. It has three functions, `foo()`, `bar()` and `baz()`, which all have tests implemented in the tests/ folder, and you can run them using the `pytest` command as shown above.
 
@@ -148,7 +148,7 @@ Those who tried to create such a package manually know that quite often somethin
 
 # Notes on further development of your package
 
-As mentioned before, the first step is to fill in several fields in setup.py and author in LICENSE. Then you need to create a virtual environment, in which you install the package in the editable mode. And that's all you need to start development.
+As mentioned before, the first step is to fill in several fields in pyproject.toml and author in LICENSE. Then you need to create a virtual environment, in which you install the package in the editable mode. And that's all you need to start development.
 
 From now on, you're on your own. However, a package created using `makepackage` comes with some help for inexperienced users. They can see how to write tests (using `pytest`), how to use a conftest.py file (for `pytest`ing), how to write fixtures and parametrized tests (again for `pytest`ing), how to import the package's modules and functions, how to write `doctest`s, and the like. These are just some basic development tools.
 
@@ -186,7 +186,7 @@ Now, you can sit and wait for a review of your proposal; use this time for think
 
 #### Keep the current API of the package
 
-This, for instance, means that `makepackage`'s API does not offer different licences, structures of the root folder, and the like. Also, the API does not offer numerous arguments to enable the user to fill in the required fields of setup.py; the user can do it directly in the file, an approach that is easier than providing this information through command-line arguments. No GUI, too: just a simple shell command.
+This, for instance, means that `makepackage`'s API does not offer different licences, structures of the root folder, and the like. Also, the API does not offer numerous arguments to enable the user to fill in the required fields of pyproject.toml; the user can do it directly in the file, an approach that is easier than providing this information through command-line arguments. No GUI, too: just a simple shell command.
 
 The simpler the API, the easier the package is to use. The idea behind `makepackage` was to bring a _really_ simple API to create a package. This simplicity cannot come without cost, but the cost does not seem that great. True, if one wants to create a different organization of the package or wants to use `unittest` instead of `pytest`, then one will have to choose a different tool or do it manually. This is the main cost of simplicity we have to pay, but had `makepackage` enabled the user to choose from different options, the package's API would have been far more complicated. This would mean the main purpose behind creating the package — crreating the structure of a Python package in an easy way — would not have been accomplished.
 
