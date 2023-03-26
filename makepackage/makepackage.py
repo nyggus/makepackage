@@ -4,6 +4,7 @@ from pathlib import Path
 
 from makepackage.write_README import write_README
 from makepackage.write_pyproject import write_pyproject
+from makepackage.write_setup_cfg import write_setup_cfg
 from makepackage.write_license import write_license
 from makepackage.write_gitignore import write_gitignore
 from makepackage.write_CLI_main import write_CLI_main
@@ -38,6 +39,7 @@ def makepackage(package_name: str, CLI: bool) -> None:
 
     # write files in the root folder
     write_pyproject(root_path, package_name, CLI)
+    write_setup_cfg(root_path, package_name, CLI)
     write_README(root_path, package_name, CLI)
     write_pytest_ini(root_path)
     write_license(root_path)
