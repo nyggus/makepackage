@@ -10,3 +10,8 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
         "requires": ["setuptools>=61.0"],
         "build-backend": '"setuptools.build_meta"',
     }
+
+    config["tool.pytest.ini_options"] = {"testpaths": ["tests"]}
+
+    with open(path / "pyproject.toml", "w") as f:
+        config.write(f)
