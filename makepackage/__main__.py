@@ -52,12 +52,11 @@ def print_final_info(package_name: str) -> None:
         "  - author\n"
         "  - author_email\n"
         "  - description (this is a short description, as the long one is taken from README)\n"
-        "You need to also fill in the author in LICENSE. You can find all those fields"
+        "Also, fill in the author in LICENSE. You can find all those fields "
         "by searching for '[MAKEPACKAGE]' in the project.\n"
-        "When you're done, the package is ready to be develop.\n"
+        "When you're done, the package is ready to develop.\n"
         "Check if you need all libraries from options.extras_require in setup.cfg - they will "
-        "be installed in the development mode of the package (not after installing from "
-        "the wheel file)."
+        "be installed in the development mode of the package"
     )
 
 
