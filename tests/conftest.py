@@ -18,7 +18,6 @@ def files_no_CLI() -> Iterator[Dict[str, List[str]]]:
             "root": [
                 "README.md",
                 ".gitignore",
-                "pytest.ini",
                 "setup.cfg",
                 "pyproject.toml",
                 "LICENSE",
@@ -31,7 +30,6 @@ def files_no_CLI() -> Iterator[Dict[str, List[str]]]:
             "root": [
                 "README.md",
                 ".gitignore",
-                "pytest.ini",
                 "setup.cfg",
                 "pyproject.toml",
                 "LICENSE",
@@ -48,7 +46,6 @@ def files_with_CLI() -> Iterator[Dict[str, List[str]]]:
             "root": [
                 "README.md",
                 ".gitignore",
-                "pytest.ini",
                 "setup.cfg",
                 "pyproject.toml",
                 "LICENSE",
@@ -61,7 +58,6 @@ def files_with_CLI() -> Iterator[Dict[str, List[str]]]:
             "root": [
                 "README.md",
                 ".gitignore",
-                "pytest.ini",
                 "setup.cfg",
                 "pyproject.toml",
                 "LICENSE",
