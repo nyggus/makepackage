@@ -16,26 +16,28 @@ def write_setup_cfg(path: Path, package_name: str, CLI: bool) -> None:
         "long_description_content_type": "text/markdown",
         "url": "[MAKEPACKAGE]",
         "license_files": "LICENSE",
-        "classifiers": [
-            "Programming Language :: Python :: 3",
-            "License :: OSI Approved :: MIT License",
-            "Operating System :: OS Independent",
-        ],
+        "classifiers": "\n".join(
+            [
+                "Programming Language :: Python :: 3",
+                "License :: OSI Approved :: MIT License",
+                "Operating System :: OS Independent",
+            ]
+        ),
     }
 
     config["options"] = {
-        "packages": [f"{package_name}"],
+        "packages": "\n".join([f"{package_name}"]),
         "python_requires": ">=3.6",
-        "install_requires": ["easycheck"],
+        "install_requires": "\n".join(["easycheck"]),
     }
 
     if CLI:
         config["options.entry_points"] = {
-            f"{package_name}": f'"{package_name}.__main__:main"'
+            f"{package_name}": f"{package_name}.__main__:main"
         }
 
     config["options.extras_require"] = {
-        "dev": ["wheel", "black", "pytest", "mypy"],
+        "dev": "\n".join(["wheel", "black", "pytest", "mypy", "build"]),
     }
 
     with open(path / "setup.cfg", "w") as f:
