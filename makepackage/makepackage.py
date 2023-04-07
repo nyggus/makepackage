@@ -12,7 +12,6 @@ from makepackage.write_CLI_main import write_CLI_main
 from makepackage.write_module_init import write_module_init
 from makepackage.write_module import write_module
 
-from makepackage.write_pytest_ini import write_pytest_ini
 from makepackage.write_conftest import write_conftest
 from makepackage.write_tests import write_tests
 from makepackage.write_tests_init import write_tests_init
@@ -41,7 +40,6 @@ def makepackage(package_name: str, CLI: bool) -> None:
     write_pyproject(root_path, package_name, CLI)
     write_setup_cfg(root_path, package_name, CLI)
     write_README(root_path, package_name, CLI)
-    write_pytest_ini(root_path)
     write_license(root_path)
     write_gitignore(root_path)
 
