@@ -48,10 +48,10 @@ Remember to update package version once a change is made to the package and the 
 To build the package, you need to go to the root folder of the package and run the following command:
 
 ```shell
-(venv-{package_name}) > python setup.py sdist bdist_wheel
+(venv-{package_name}) > python -m build
 ```
 
-Note that this assumes you have `wheel` installed in your virtual environment, and `makepackage` does this for you.
+Note that this assumes you have `wheel` and `build` installed in your virtual environment, and `makepackage` does this for you.
 
 The built package is now located in the dist/ folder.
 

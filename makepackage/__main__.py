@@ -48,16 +48,15 @@ def print_final_info(package_name: str) -> None:
     print(
         "\n"
         f"Package <{package_name}> has been created."
-        "\nTo finish, you need to fill in the following fields in setup.py:\n"
+        "\nTo finish, you need to fill in the following fields in setup.cfg:\n"
         "  - author\n"
         "  - author_email\n"
         "  - description (this is a short description, as the long one is taken from README)\n"
-        "You need to also fill in the author in LICENSE. You can find all those fields"
+        "Also, fill in the author in LICENSE. You can find all those fields "
         "by searching for '[MAKEPACKAGE]' in the project.\n"
-        "When you're done, the package is ready to be develop.\n"
-        "Check if you need all libraries from extras_require in setup.py - they will "
-        "be installed in the development mode of the package (not after installing from "
-        "the wheel file)."
+        "When you're done, the package is ready to develop.\n"
+        "Check if you need all libraries from options.extras_require in setup.cfg - they will "
+        "be installed in the development mode of the package"
     )
 
 
