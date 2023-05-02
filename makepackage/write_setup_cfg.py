@@ -18,6 +18,7 @@ def write_setup_cfg(path: Path, package_name: str, CLI: bool) -> None:
         "license_files": "LICENSE",
         "classifiers": "\n".join(
             [
+                "\n",
                 "Programming Language :: Python :: 3",
                 "License :: OSI Approved :: MIT License",
                 "Operating System :: OS Independent",
@@ -33,7 +34,9 @@ def write_setup_cfg(path: Path, package_name: str, CLI: bool) -> None:
 
     if CLI:
         config["options.entry_points"] = {
-            f"{package_name}": f"{package_name}.__main__:main"
+            "console_scripts": "\n".join(
+                [f"{package_name} = {package_name}.__main__:main"]
+            )
         }
 
     config["options.extras_require"] = {
