@@ -1,10 +1,10 @@
-from typing import Dict, Iterator, List
+from typing import Dict, List
 
 import pytest
 
 
 @pytest.fixture
-def files_no_CLI() -> Iterator[Dict[str, List[str]]]:
+def files_no_CLI() -> Dict[str, List[str]]:
     return {
         "root": [
             "README.md",
@@ -19,7 +19,7 @@ def files_no_CLI() -> Iterator[Dict[str, List[str]]]:
 
 
 @pytest.fixture
-def files_with_CLI() -> Iterator[Dict[str, List[str]]]:
+def files_with_CLI() -> Dict[str, List[str]]:
     return {
         "root": [
             "README.md",
