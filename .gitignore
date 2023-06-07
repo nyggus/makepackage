@@ -58,3 +58,6 @@ env.bak/
 venv.bak/
 venv_*/
 venv-*/
+
+# IDE config
+.vscode
