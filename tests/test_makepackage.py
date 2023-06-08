@@ -7,13 +7,10 @@ import pytest
 
 
 def test_pkg_no_CLI(tmp_path: Path, files_no_CLI: Dict[str, List[str]]):
-    if platform.system() == "Windows":
-        PY = "python"
-    else:
-        PY = "python3"
+    PY = "python" if platform.system() == "Windows" else "python3"
 
     subprocess.run(f"{PY} -m venv venv-pkgNoCLI", shell=True, cwd=tmp_path)
-    subprocess.run(f"makepackage pkgNoCLI", shell=True, cwd=tmp_path)
+    subprocess.run("makepackage pkgNoCLI", shell=True, cwd=tmp_path)
 
     files = files_no_CLI
 
@@ -32,13 +29,10 @@ def test_pkg_no_CLI(tmp_path: Path, files_no_CLI: Dict[str, List[str]]):
 
 
 def test_pkg_with_CLI(tmp_path: Path, files_with_CLI: Dict[str, List[str]]):
-    if platform.system() == "Windows":
-        PY = "python"
-    else:
-        PY = "python3"
+    PY = "python" if platform.system() == "Windows" else "python3"
 
     subprocess.run(f"{PY} -m venv venv-pkgWithCLI", shell=True, cwd=tmp_path)
-    subprocess.run(f"makepackage pkgWithCLI --cli", shell=True, cwd=tmp_path)
+    subprocess.run("makepackage pkgWithCLI --cli", shell=True, cwd=tmp_path)
 
     files = files_with_CLI
 
