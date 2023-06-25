@@ -1,30 +1,42 @@
-import platform
 import subprocess
+import platform
 from pathlib import Path
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 import pytest
 
 
-def test_pkg_no_CLI(tmp_path: Path, files_no_CLI: Dict[str, List[str]]):
-    PY_CMD = "python" if platform.system() == "Windows" else "python3"
+def select_venv_cmd():
+    if platform.system() == "Windows":
+        return ".\\.venv\\Scripts\\activate"
+
+    return "source .venv/bin/activate"
+
+
+def run_cmds(cmds: List[Tuple]):
+    for cmd, path in cmds:
+        subprocess.run(cmd, shell=True, cwd=path, check=True)
+
+
+def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: Dict[str, List[str]]):
     pkg_name = "pkgNoCLI"
-    venv = f"venv-{pkg_name}"
     pkg_path = tmp_path / pkg_name
     src_dir = tmp_path / pkg_name / pkg_name
     tests_dir = tmp_path / pkg_name / "tests"
+    venv_command = select_venv_cmd()
 
-    subprocess.run(f"{PY_CMD} -m venv {venv}", shell=True, cwd=tmp_path)
-    subprocess.run(f"makepackage {pkg_name}", shell=True, cwd=tmp_path)
-    subprocess.run(f"{PY_CMD} -m pip install -e .", shell=True, cwd=pkg_path)
-    subprocess.run("pytest", shell=True, cwd=pkg_path)
-    subprocess.run(
-        f"{PY_CMD} -m doctest {src_dir / pkg_name}.py", shell=True, cwd=pkg_path
-    )
+    commands = [
+        (f"makepackage {pkg_name}", tmp_path),
+        (f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .", pkg_path),
+        ("pytest", pkg_path),
+        (f"{py_cmd} -m doctest {src_dir / pkg_name}.py", pkg_path),
+    ]
+
+    run_cmds(commands)
 
     files = files_no_CLI
 
-    assert (tmp_path / venv).exists()
+    assert (pkg_path / ".venv").exists()
     assert (pkg_path).exists()
     assert (src_dir).exists()
     assert (tests_dir).exists()
@@ -34,25 +46,29 @@ def test_pkg_no_CLI(tmp_path: Path, files_no_CLI: Dict[str, List[str]]):
     assert all((tests_dir / file).exists() for file in files["test"])
 
 
-def test_pkg_with_CLI(tmp_path: Path, files_with_CLI: Dict[str, List[str]]):
-    PY_CMD = "python" if platform.system() == "Windows" else "python3"
+def test_pkg_with_CLI(
+    tmp_path: Path,
+    py_cmd: str,
+    files_with_CLI: Dict[str, List[str]],
+):
     pkg_name = "pkgWithCLI"
-    venv = f"venv-{pkg_name}"
     pkg_path = tmp_path / pkg_name
     src_dir = tmp_path / pkg_name / pkg_name
     tests_dir = tmp_path / pkg_name / "tests"
+    venv_command = select_venv_cmd()
 
-    subprocess.run(f"{PY_CMD} -m venv {venv}", shell=True, cwd=tmp_path)
-    subprocess.run(f"makepackage {pkg_name} --cli", shell=True, cwd=tmp_path)
-    subprocess.run(f"{PY_CMD} -m pip install -e .", shell=True, cwd=pkg_path)
-    subprocess.run("pytest", shell=True, cwd=pkg_path)
-    subprocess.run(
-        f"{PY_CMD} -m doctest {src_dir / pkg_name}.py", shell=True, cwd=pkg_path
-    )
+    commands = [
+        (f"makepackage {pkg_name} --cli", tmp_path),
+        (f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .", pkg_path),
+        ("pytest", pkg_path),
+        (f"{py_cmd} -m doctest {src_dir / pkg_name}.py", pkg_path),
+    ]
+
+    run_cmds(commands)
 
     files = files_with_CLI
 
-    assert (tmp_path / venv).exists()
+    assert (pkg_path / ".venv").exists()
     assert (pkg_path).exists()
     assert (src_dir).exists()
     assert (tests_dir).exists()
