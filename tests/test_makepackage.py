@@ -8,7 +8,7 @@ import pytest
 
 def select_venv_cmd():
     if platform.system() == "Windows":
-        return ".\\.venv\\Scripts\\activate"
+        return r".\.venv\Scripts\activate"
 
     return "source .venv/bin/activate"
 
