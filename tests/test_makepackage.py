@@ -15,7 +15,12 @@ def select_venv_cmd():
 
 def run_cmds(cmds: List[Tuple]):
     for cmd, path in cmds:
-        subprocess.run(cmd, shell=True, cwd=path, check=True)
+        if platform.system() == "Windows":
+            subprocess.run(cmd, shell=True, cwd=path, check=True)
+        else:
+            subprocess.run(
+                cmd, executable="/bin/bash", shell=True, cwd=path, check=True
+            )
 
 
 def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: Dict[str, List[str]]):
