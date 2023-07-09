@@ -1,9 +1,10 @@
+from __future__ import annotations
 import subprocess
 import platform
 from pathlib import Path
-from typing import Dict, List, Tuple
 
-import pytest
+
+cmd_commands = tuple[str, Path]
 
 
 def select_venv_cmd():
@@ -13,7 +14,7 @@ def select_venv_cmd():
     return "source .venv/bin/activate"
 
 
-def run_cmds(cmds: List[Tuple]):
+def run_cmds(cmds: list[cmd_commands]):
     for cmd, path in cmds:
         if platform.system() == "Windows":
             subprocess.run(cmd, shell=True, cwd=path, check=True)
@@ -23,7 +24,9 @@ def run_cmds(cmds: List[Tuple]):
             )
 
 
-def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: Dict[str, List[str]]):
+def test_pkg_no_CLI(
+    tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]
+):
     pkg_name = "pkgNoCLI"
     pkg_path = tmp_path / pkg_name
     src_dir = tmp_path / pkg_name / pkg_name
@@ -32,7 +35,10 @@ def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: Dict[str, List[st
 
     commands = [
         (f"makepackage {pkg_name}", tmp_path),
-        (f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .", pkg_path),
+        (
+            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
+            pkg_path,
+        ),
         ("pytest", pkg_path),
         (f"{py_cmd} -m doctest {src_dir / pkg_name}.py", pkg_path),
     ]
@@ -54,7 +60,7 @@ def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: Dict[str, List[st
 def test_pkg_with_CLI(
     tmp_path: Path,
     py_cmd: str,
-    files_with_CLI: Dict[str, List[str]],
+    files_with_CLI: dict[str, list[str]],
 ):
     pkg_name = "pkgWithCLI"
     pkg_path = tmp_path / pkg_name
@@ -64,7 +70,10 @@ def test_pkg_with_CLI(
 
     commands = [
         (f"makepackage {pkg_name} --cli", tmp_path),
-        (f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .", pkg_path),
+        (
+            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
+            pkg_path,
+        ),
         ("pytest", pkg_path),
         (f"{py_cmd} -m doctest {src_dir / pkg_name}.py", pkg_path),
     ]
