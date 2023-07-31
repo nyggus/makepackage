@@ -4,7 +4,7 @@ import platform
 from pathlib import Path
 
 
-cmd_commands = tuple[str, Path]
+cmd_command = tuple[str, Path]
 
 
 def select_venv_cmd():
@@ -14,7 +14,7 @@ def select_venv_cmd():
     return "source .venv/bin/activate"
 
 
-def run_cmds(cmds: list[cmd_commands]):
+def run_cmds(cmds: list[cmd_command]):
     for cmd, path in cmds:
         if platform.system() == "Windows":
             subprocess.run(cmd, shell=True, cwd=path, check=True)
