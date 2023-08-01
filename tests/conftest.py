@@ -1,6 +1,12 @@
+import platform
 from typing import Dict, List
 
 import pytest
+
+
+@pytest.fixture
+def py_cmd() -> str:
+    return "python" if platform.system() == "Windows" else "python3"
 
 
 @pytest.fixture
