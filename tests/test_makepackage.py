@@ -1,8 +1,8 @@
 from __future__ import annotations
-import subprocess
-import platform
-from pathlib import Path
 
+import platform
+import subprocess
+from pathlib import Path
 
 cmd_command = tuple[str, Path]
 
@@ -24,9 +24,7 @@ def run_cmds(cmds: list[cmd_command]):
             )
 
 
-def test_pkg_no_CLI(
-    tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]
-):
+def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]):
     pkg_name = "pkgNoCLI"
     pkg_path = tmp_path / pkg_name
     src_dir = tmp_path / pkg_name / pkg_name
@@ -36,7 +34,7 @@ def test_pkg_no_CLI(
     commands = [
         (f"makepackage {pkg_name}", tmp_path),
         (
-            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
+            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .[dev]",
             pkg_path,
         ),
         ("pytest", pkg_path),
@@ -71,7 +69,7 @@ def test_pkg_with_CLI(
     commands = [
         (f"makepackage {pkg_name} --cli", tmp_path),
         (
-            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
+            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .[dev]",
             pkg_path,
         ),
         ("pytest", pkg_path),
