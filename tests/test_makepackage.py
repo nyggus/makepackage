@@ -2,9 +2,10 @@ from __future__ import annotations
 import subprocess
 import platform
 from pathlib import Path
+from typing import Tuple
 
 
-cmd_command = tuple[str, Path]
+cmd_command = Tuple[str, Path]
 
 
 def select_venv_cmd():
