@@ -35,6 +35,7 @@ def test_pkg_no_CLI(
     venv_command = select_venv_cmd()
 
     commands = [
+        ("which python", )
         (f"makepackage {pkg_name}", tmp_path),
         (
             f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
