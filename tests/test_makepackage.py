@@ -40,7 +40,7 @@ def test_pkg_no_CLI(
             f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
             pkg_path,
         ),
-        ("python -m pytest", pkg_path),
+        ("pip list && python -m pytest", pkg_path),
         (f"{py_cmd} -m doctest {src_dir / pkg_name}.py", pkg_path),
     ]
 
