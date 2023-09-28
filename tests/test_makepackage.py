@@ -1,9 +1,9 @@
 from __future__ import annotations
-import subprocess
+
 import platform
+import subprocess
 from pathlib import Path
 from typing import Tuple
-
 
 cmd_command = Tuple[str, Path]
 
@@ -17,17 +17,36 @@ def select_venv_cmd():
 
 def run_cmds(cmds: list[cmd_command]):
     for cmd, path in cmds:
-        if platform.system() == "Windows":
-            subprocess.run(cmd, shell=True, cwd=path, check=True)
-        else:
-            subprocess.run(
-                cmd, executable="/bin/bash", shell=True, cwd=path, check=True
+        process = subprocess.Popen(
+            args=cmd,
+            shell=True,
+            cwd=path,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+
+        _, stderr = process.communicate()
+
+        if process.returncode != 0:
+            raise RuntimeError(
+                f"Command failed with error code {process.returncode}: {stderr.decode()}"
             )
+        # if platform.system() == "Windows":
+        #     # subprocess.run(cmd, shell=True, cwd=path, check=True)
+        #     process = subprocess.Popen(
+        #         args=cmd,
+        #         shell=True,
+        #         cwd=path,
+        #         stdout=subprocess.PIPE,
+        #         stderr=subprocess.PIPE,
+        #     )
+        # else:
+        #     subprocess.run(
+        #         cmd, executable="/bin/bash", shell=True, cwd=path, check=True
+        #     )
 
 
-def test_pkg_no_CLI(
-    tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]
-):
+def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]):
     pkg_name = "pkgNoCLI"
     pkg_path = tmp_path / pkg_name
     src_dir = tmp_path / pkg_name / pkg_name
