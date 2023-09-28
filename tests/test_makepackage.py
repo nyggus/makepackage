@@ -16,10 +16,16 @@ def select_venv_cmd():
 
 
 def run_cmds(cmds: list[cmd_command]):
+    if platform.system() == "Windows":
+        executable = None
+    else:
+        executable = "/bin/bash"
+
     for cmd, path in cmds:
         process = subprocess.Popen(
             args=cmd,
             shell=True,
+            executable=executable,
             cwd=path,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -31,19 +37,6 @@ def run_cmds(cmds: list[cmd_command]):
             raise RuntimeError(
                 f"Command failed with error code {process.returncode}: {stderr.decode()}"
             )
-        # if platform.system() == "Windows":
-        #     # subprocess.run(cmd, shell=True, cwd=path, check=True)
-        #     process = subprocess.Popen(
-        #         args=cmd,
-        #         shell=True,
-        #         cwd=path,
-        #         stdout=subprocess.PIPE,
-        #         stderr=subprocess.PIPE,
-        #     )
-        # else:
-        #     subprocess.run(
-        #         cmd, executable="/bin/bash", shell=True, cwd=path, check=True
-        #     )
 
 
 def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]):
