@@ -52,7 +52,7 @@ def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[st
             f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
             pkg_path,
         ),
-        ("pip list && python -m pytest", pkg_path),
+        ("pytest", pkg_path),
         (f"{py_cmd} -m doctest {src_dir / pkg_name}.py", pkg_path),
     ]
 
@@ -87,7 +87,7 @@ def test_pkg_with_CLI(
             f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
             pkg_path,
         ),
-        ("python -m pytest", pkg_path),
+        ("pytest", pkg_path),
         (f"{py_cmd} -m doctest {src_dir / pkg_name}.py", pkg_path),
     ]
 
