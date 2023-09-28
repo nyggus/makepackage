@@ -10,8 +10,8 @@ on:
   pull_request:
     branches: ["add-pkg-ci"]
 
-# permissions:
-#   contents: read
+permissions:
+  contents: read
 
 jobs:
   build:
@@ -46,7 +46,6 @@ jobs:
           flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
       - name: Test with pytest
         run: |
-          pytest
-        # python -m pytest --cov=makepackage --cov-report=html tests/
+          python -m pytest --cov=makepackage --cov-report=html tests/
       # - name: Upload coverage reports to Codecov
       #   uses: codecov/codecov-action@v3
