@@ -39,7 +39,9 @@ def run_cmds(cmds: list[cmd_command]):
             )
 
 
-def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]):
+def test_pkg_no_CLI(
+    tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]
+):
     pkg_name = "pkgNoCLI"
     pkg_path = tmp_path / pkg_name
     src_dir = tmp_path / pkg_name / pkg_name
