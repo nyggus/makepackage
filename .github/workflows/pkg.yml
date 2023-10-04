@@ -6,9 +6,9 @@ name: Python application
 
 on:
   push:
-    branches: ["add-pkg-ci"]
+    branches: ["main"]
   pull_request:
-    branches: ["add-pkg-ci"]
+    branches: ["main"]
 
 permissions:
   contents: read
