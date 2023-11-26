@@ -3,9 +3,10 @@ from __future__ import annotations
 import platform
 import subprocess
 from pathlib import Path
-from typing import Tuple
+from typing import Dict, List, Tuple
 
-cmd_command = tuple[str, Path]
+cmd_command = Tuple[str, Path]
+
 
 def select_venv_cmd():
     if platform.system() == "Windows":
@@ -14,7 +15,7 @@ def select_venv_cmd():
     return "source .venv/bin/activate"
 
 
-def run_cmds(cmds: list[cmd_command]):
+def run_cmds(cmds: List[cmd_command]):
     if platform.system() == "Windows":
         executable = None
     else:
@@ -38,7 +39,11 @@ def run_cmds(cmds: list[cmd_command]):
             )
 
 
-def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]):
+def test_pkg_no_CLI(
+    tmp_path: Path,
+    py_cmd: str,
+    files_no_CLI: Dict[str, List[str]],
+):
     pkg_name = "pkgNoCLI"
     pkg_path = tmp_path / pkg_name
     src_dir = tmp_path / pkg_name / pkg_name
@@ -72,7 +77,7 @@ def test_pkg_no_CLI(tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[st
 def test_pkg_with_CLI(
     tmp_path: Path,
     py_cmd: str,
-    files_with_CLI: dict[str, list[str]],
+    files_with_CLI: Dict[str, List[str]],
 ):
     pkg_name = "pkgWithCLI"
     pkg_path = tmp_path / pkg_name
