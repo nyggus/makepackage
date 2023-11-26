@@ -3,9 +3,9 @@ from __future__ import annotations
 import platform
 import subprocess
 from pathlib import Path
+from typing import Tuple
 
 cmd_command = tuple[str, Path]
-
 
 def select_venv_cmd():
     if platform.system() == "Windows":
@@ -15,12 +15,26 @@ def select_venv_cmd():
 
 
 def run_cmds(cmds: list[cmd_command]):
+    if platform.system() == "Windows":
+        executable = None
+    else:
+        executable = "/bin/bash"
+
     for cmd, path in cmds:
-        if platform.system() == "Windows":
-            subprocess.run(cmd, shell=True, cwd=path, check=True)
-        else:
-            subprocess.run(
-                cmd, executable="/bin/bash", shell=True, cwd=path, check=True
+        process = subprocess.Popen(
+            args=cmd,
+            shell=True,
+            executable=executable,
+            cwd=path,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+
+        _, stderr = process.communicate()
+
+        if process.returncode != 0:
+            raise RuntimeError(
+                f"Command failed with error code {process.returncode}: {stderr.decode()}"
             )
 
 
