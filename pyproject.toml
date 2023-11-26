@@ -18,7 +18,7 @@ classifiers=[
 ]
 
 [project.urls]
-"Homepage" = "https://github.com/nyggus/makepackage"
+Homepage = "https://github.com/nyggus/makepackage/"
 
 [tool.setuptools]
 packages = ["makepackage"]
