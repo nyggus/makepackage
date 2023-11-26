@@ -25,7 +25,7 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
             "Operating System :: OS Independent",
         ],
     }
-    config["project.urls"] = {"Homepage": '"[MAKEPACKAGE]"'}
+    config["project.urls"] = {"Homepage": '"https://example.com"'}
     config["tool.setuptools"] = {"packages": [f"{package_name}"]}
 
     if CLI:
