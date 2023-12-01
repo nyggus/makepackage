@@ -5,7 +5,10 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "makepackage"
 version = "0.1.9"
-authors = [{name="Nyggus", email="nyggus@gmail.com"},]
+authors = [
+        {name="Nyggus", email="nyggus@gmail.com"}, 
+        {name="Patrick Boateng", email="boatengpato.pb@gmail.com"},
+]
 description = "Creating a structure of a simple Python package"
 readme = "README.md"
 license = {file = "LICENSE"}
