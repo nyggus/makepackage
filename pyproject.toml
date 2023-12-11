@@ -6,15 +6,15 @@ build-backend = "setuptools.build_meta"
 name = "makepackage"
 version = "0.1.9"
 authors = [
-        {name="Nyggus", email="nyggus@gmail.com"}, 
-        {name="Patrick Boateng", email="boatengpato.pb@gmail.com"},
+        { name = "Nyggus", email = "nyggus@gmail.com" },
+        { name = "Patrick Boateng", email = "boatengpato.pb@gmail.com" },
 ]
 description = "Creating a structure of a simple Python package"
 readme = "README.md"
-license = {file = "LICENSE"}
+license = { file = "LICENSE" }
 requires-python = ">=3.6"
 dependencies = ["easycheck"]
-classifiers=[
+classifiers = [
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
@@ -30,7 +30,7 @@ packages = ["makepackage"]
 makepackage = "makepackage.__main__:main"
 
 [project.optional-dependencies]
-dev = ["wheel", "black", "pytest", "mypy"]
+dev = ["wheel", "black", "pytest", "mypy", "setuptools"]
 
 [tool.black]
 line-length = 79

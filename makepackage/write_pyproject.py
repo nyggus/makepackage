@@ -34,7 +34,7 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
         }
 
     config["project.optional-dependencies"] = {
-        "dev": ["wheel", "black", "pytest", "mypy"]
+        "dev": ["wheel", "black", "pytest", "mypy", "setuptools"]
     }
 
     with open(path / "pyproject.toml", "w") as f:
