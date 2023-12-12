@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "makepackage"
+version = "0.2.0"
+authors = [
+        { name = "Nyggus", email = "nyggus@gmail.com" },
+        { name = "Patrick Boateng", email = "boatengpato.pb@gmail.com" },
+]
+description = "Creating a structure of a simple Python package"
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.6"
+dependencies = ["easycheck"]
+classifiers = [
+        "Programming Language :: Python :: 3",
+        "License :: OSI Approved :: MIT License",
+        "Operating System :: OS Independent",
+]
+
+[project.urls]
+Homepage = "https://github.com/nyggus/makepackage/"
+
+[tool.setuptools]
+packages = ["makepackage"]
+
+[project.scripts]
+makepackage = "makepackage.__main__:main"
+
+[project.optional-dependencies]
+dev = ["wheel", "black", "pytest", "mypy", "setuptools"]
+
+[tool.black]
+line-length = 79

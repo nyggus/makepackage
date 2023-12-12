@@ -3,7 +3,7 @@ from __future__ import annotations
 import platform
 import subprocess
 from pathlib import Path
-from typing import Tuple
+from typing import Dict, List, Tuple
 
 cmd_command = Tuple[str, Path]
 
@@ -15,7 +15,7 @@ def select_venv_cmd():
     return "source .venv/bin/activate"
 
 
-def run_cmds(cmds: list[cmd_command]):
+def run_cmds(cmds: List[cmd_command]):
     if platform.system() == "Windows":
         executable = None
     else:
@@ -40,7 +40,9 @@ def run_cmds(cmds: list[cmd_command]):
 
 
 def test_pkg_no_CLI(
-    tmp_path: Path, py_cmd: str, files_no_CLI: dict[str, list[str]]
+    tmp_path: Path,
+    py_cmd: str,
+    files_no_CLI: Dict[str, List[str]],
 ):
     pkg_name = "pkgNoCLI"
     pkg_path = tmp_path / pkg_name
@@ -51,7 +53,7 @@ def test_pkg_no_CLI(
     commands = [
         (f"makepackage {pkg_name}", tmp_path),
         (
-            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
+            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .[dev]",
             pkg_path,
         ),
         ("pytest", pkg_path),
@@ -75,7 +77,7 @@ def test_pkg_no_CLI(
 def test_pkg_with_CLI(
     tmp_path: Path,
     py_cmd: str,
-    files_with_CLI: dict[str, list[str]],
+    files_with_CLI: Dict[str, List[str]],
 ):
     pkg_name = "pkgWithCLI"
     pkg_path = tmp_path / pkg_name
@@ -86,7 +88,7 @@ def test_pkg_with_CLI(
     commands = [
         (f"makepackage {pkg_name} --cli", tmp_path),
         (
-            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .",
+            f"{py_cmd} -m venv .venv && {venv_command} && pip install -e .[dev]",
             pkg_path,
         ),
         ("pytest", pkg_path),
