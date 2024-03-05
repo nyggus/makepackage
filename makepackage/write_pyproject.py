@@ -18,7 +18,7 @@ def write_pyproject(path: Path, package_name: str, CLI: bool) -> None:
         "readme": '"README.md"',
         "license": '{file = "LICENSE"}',
         "requires-python": '">=3.8"',
-        "dependencies": ["easycheck"],
+        "dependencies": [],
         "classifiers": [
             "Programming Language :: Python :: 3",
             "License :: OSI Approved :: MIT License",
