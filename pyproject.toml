@@ -34,3 +34,6 @@ dev = ["wheel", "black", "pytest", "mypy", "setuptools", "build"]
 
 [tool.black]
 line-length = 79
+
+[pytest]
+testpaths = ["tests"]
