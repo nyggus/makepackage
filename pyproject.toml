@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "makepackage"
-version = "0.2.1"
+version = "0.2.2"
 authors = [
         { name = "Nyggus", email = "nyggus@gmail.com" },
         { name = "Patrick Boateng", email = "boatengpato.pb@gmail.com" },
@@ -30,7 +30,10 @@ packages = ["makepackage"]
 makepackage = "makepackage.__main__:main"
 
 [project.optional-dependencies]
-dev = ["wheel", "black", "pytest", "mypy", "setuptools"]
+dev = ["wheel", "black", "pytest", "mypy", "setuptools", "build"]
 
 [tool.black]
 line-length = 79
+
+[pytest]
+testpaths = ["tests"]
